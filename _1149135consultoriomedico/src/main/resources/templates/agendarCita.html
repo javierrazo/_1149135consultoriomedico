@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Consultorio Similar</title>
+    <link  href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="../static/scripts/main.js" th:src="@{/scripts/main.js}"></script>
+</head>
+<body>
+    <header>
+        <h1>Consultorio Similar</h1>
+    </header>
+
+    <aside id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="inicio">Inicio</a>
+            <a href="agendarCita">Agendar cita</a>
+            <a href="consultarCitas">Consultar citas</a>
+    </aside>
+
+    
+
+    <section id="main">
+        <nav>
+                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+        </nav>    
+
+        <h1>Agendar cita:</h1>
+        <form action="/consultorio/addCita" method="post">
+
+            <table >
+                <tr>
+                    <td>Nombre:</td>
+                    <td><input type="text" name="nombre" required></td>
+                </tr>
+                <tr>
+                    <td>Apellido Paterno:</td>
+                    <td> <input type="text" name="apellidoP" required></td>
+                </tr>
+                <tr>
+                    <td>Apellido Materno:</td>
+                    <td><input type="text" name="apellidoM" required></td>
+                </tr>
+                <tr>
+                    <td>Asunto:</td>
+                    <td><textarea name="asunto" rows="5" cols="50" required></textarea></td>
+                </tr>
+                <tr>
+                    <td>Fecha:</td>
+                    <td><input type="date" name="fecha" required></td>
+                </tr>
+                <tr>
+                    <td>Hora:</td>
+                    <td><input type="time" name="hora" required></td>
+                </tr>
+                <tr>
+                    <td>Doctor:</td>
+                    <td><select name="docId" required>
+                        <option
+                                th:each="doc: ${doctores}"
+                                th:value="${doc.idDoctor}"
+                                th:text="${doc.nombre} + ' ' + ${doc.apellidoP} + ' ' + ${doc.getApellidoM()}">
+                        </option>
+                    </select></td>
+                </tr>
+            </table>
+            <input type="submit" value="Agendar">
+
+        </form>
+
+        <!--
+        <h2>Lista de citas</h2>
+        <ol>
+            <li
+                    th:each="cita: ${citas}"
+                    th:text="${cita.idCita} + ' ' + ${cita.nombre} + ' ' + ${cita.apellidoP} + ' ' + ${cita.apellidoM} + ' ' + ${cita.idDoctor} + ' ' +  ${cita.fecha}">
+
+                <--th:text="${cita.idCita} + ' ' + ${cita.nombre} + ' ' + ${cita.apellidoP} + ' ' + ${cita.apellidoM} + ' ' + ${cita.idDoctor} + ' ' +  ${cita.fecha} + ' ' + "> --
+
+            </li>
+            <li th:text="${objtJson}"></li>
+            <li th:text="${objtJson2}"></li>
+        </ol>
+        -->
+
+    </section>
+
+    <footer>
+        <h7>Consultorio similar© 2019.</h7>
+        <h8>Javier Razo Rosales</h8>
+    </footer>
+</body>
+</html>

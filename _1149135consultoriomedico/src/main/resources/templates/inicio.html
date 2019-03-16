@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Consultorio Similar</title>
+    <link  href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="../static/scripts/main.js" th:src="@{/scripts/main.js}"></script>
+</head>
+<body>
+    <header>
+        <h1>Consultorio Similar</h1>
+    </header>
+
+    <aside id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="inicio">Inicio</a>
+        <a href="agendarCita">Agendar cita</a>
+        <a href="consultarCitas">Consultar citas</a>
+    </aside>
+
+    
+
+    <section id="main">
+        <nav>
+                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+        </nav>    
+
+        <h1>Inicio</h1>
+        <p>Al entrar a esta página se cargan los doctores y las citas por defecto.</p>
+        <p>Se borran citas agregadas.</p>
+
+
+        <h2>Lista de doctores</h2>
+
+        <ol>
+            <li
+                    th:each="doc: ${doctores}"
+                    th:text="${doc.idDoctor} + ' ' + ${doc.nombre} + ' ' + ${doc.apellidoP} + ' ' + ${doc.getApellidoM()}">
+            </li>
+        </ol>
+
+        
+    </section>
+
+    <footer>
+        <h7>Consultorio similar© 2019.</h7>
+        <h8>Javier Razo Rosales</h8>
+    </footer>
+</body>
+</html>
